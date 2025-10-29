@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Header</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background-color: white;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .logo img {
+      height: 120px;
+    }
+
+    .search-bar {
+      flex: 1;
+      margin: 10px 20px;
+      display: flex;
+      background-color: #4CAF50;
+      border-radius: 7px;
+      overflow: hidden;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 16px;
+    }
+
+    .search-bar input::placeholder {
+      color: white;
+    }
+
+    .search-bar .search-icon {
+      padding: 0 15px;
+      font-size: 24px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .register-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav {
+      width: 100%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      padding: 15px 0;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #4CAF50;
+    }
+
+    /* ===== HEADER ICONS ===== */
+    .header-icons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .icon-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .icon, .circle-icon {
+      width: 55px;
+      height: 55px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .circle-icon {
+      border-radius: 50%;
+    }
+
+    .red-dot {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 8px;
+      height: 8px;
+      background-color: red;
+      border-radius: 50%;
+      display: none;
+    }
+
+    /* ===== PROFILE POPUP ===== */
+    .profile-popup {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 6px;
+      padding: 10px;
+      width: 300px;
+      display: none;
+      z-index: 1000;
+    }
+
+    .profile-popup ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .profile-popup li {
+      margin: 8px 0;
+    }
+
+    .profile-popup a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: block;
+    }
+
+    .profile-popup a:hover {
+      text-decoration: underline;
+    }
+
+    .profile-popup hr {
+      border: 0;
+      border-top: 1px solid white;
+      margin: 8px 0;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: #F29B03;
+      color: black;
+      padding: 40px 20px 20px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-column {
+      flex: 1 1 150px;
+      min-width: 150px;
+    }
+
+    .footer-column h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .footer-column ul li a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .footer-column ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .social-icons img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .oval-image {
+      width: 150px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 20px;
+    }
+
+    .logo-image {
+      width: 150px;
+      margin-bottom: 10px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    .footer-bottom a {
+      color: black;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .footer-bottom a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-bar {
+        flex-direction: column;
+      }
+
+      .search-bar input {
+        width: 100%;
+        padding: 12px;
+      }
+
+      .search-bar .search-icon {
+        justify-content: flex-end;
+        padding: 10px;
+      }
+
+      .register-btn {
+        align-self: flex-end;
+        margin-top: 10px;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-column {
+        margin-bottom: 20px;
+      }
+
+      .social-icons {
+        justify-content: center;
+      }
+    }
+    .contact-wrapper {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff;
+  color: black;
+}
+
+.contact-heading {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.contact-subtext {
+  font-size: 22px;
+  color: black;
+  text-shadow: 0 0 1px lightgrey;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.contact-flex {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.contact-details {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.detail-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.detail-icon {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin-top: 4px;
+}
+
+.detail-text {
+  font-size: 22px;
+  text-align: left;
+}
+
+.detail-label {
+  font-weight: bold;
+  color: black;
+}
+
+.phone-emoji {
+  width: 300px;
+  height: 150px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.contact-visual img {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .contact-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-visual img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+
+  .contact-details {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+/* Notification Icon */
+.icon-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.red-dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+/* Popup Box */
+.popup-box {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  width: 300px;
+  background-color: #4CAF50;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: none;
+  z-index: 1000;
+}
+
+.popup-box h4 {
+  margin-top: 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.popup-box ul {
+  padding-left: 20px;
+  margin: 10px 0 0;
+}
+
+.popup-box li {
+  margin-bottom: 10px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* 📱 Responsive */
+@media (max-width: 600px) {
+  .popup-box {
+    width: 90%;
+    left: 5%;
+    top: 70px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Logo" />
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search Product category" />
+      <div class="search-icon">🔍</div>
+    </div>
+
+    <div class="header-icons">
+      <a href="#" class="icon-wrapper" onclick="toggleProfileMenu(event)">
+        <img src="pf.jpg" alt="Profile" class="circle-icon" />
+        <span class="red-dot"></span>
+      </a>
+
+      <!-- Profile Popup Menu -->
+      <div class="profile-popup" id="profileMenu">
+        <ul>
+          <li><a href="my.html">My Account</a></li>
+          <hr />
+          <li><a href="my.html">Personal Information</a></li>
+          <li><a href="orders.html">My Orders</a></li>
+          <li><a href="track.html">Tracking Order</a></li>
+          <li><a href="pass.html">Password Manager</a></li>
+          <li><a href="log.html">Log Out</a></li>
+        </ul>
+      </div>
+
+      <a href="wishlist.html" class="icon-wrapper" onclick="showDot(this)">
+        <img src="wh.jpg" alt="Wishlist" class="icon" />
+        <span class="red-dot"></span>
+      </a>
+
+      <a href="cart.html" class="icon-wrapper" onclick="showDot(this)">
+        <img src="cart.jpg" alt="Cart" class="icon" />
+        <span class="red-dot"></span>
+      </a>
+
+      <!-- Notification Icon -->
+<a href="#" class="icon-wrapper" onclick="showDot(this)">
+  <img src="note.jpg" alt="Notifications" class="icon" />
+  <span class="red-dot"></span>
+</a>
+
+<!-- Popup Message Box -->
+<div class="popup-box" id="popupBox">
+  <h4>Order Updates</h4>
+  <hr />
+  <ul>
+    <li>"Your order has been placed successfully! We'll notify you once it's out for delivery."</li>
+    <li>"Good news! Your groceries are on the way. Track your delivery in real time."</li>
+    <li>"Your order has been delivered. Thank you for shopping with us."</li>
+  </ul>
+</div>
+  </header>
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="shop.html">Shopping</a>
+    <a href="cat.html">Categories</a>
+    <a href="blogs.html">Blogs</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="about.html">About Us</a>
+  </nav>
+
+<section class="contact-wrapper">
+  <h2 class="contact-heading">Contact Us</h2>
+  <p class="contact-subtext">
+    We're here to help you make your houses feel like home.<br>
+    Whether you have questions about a product, need help with your order, or simply want advice on styling your space — our team is ready to assist.
+  </p>
+
+  <div class="contact-flex">
+    <!-- Left Info -->
+    <div class="contact-details">
+      <div class="detail-item">
+        <img src="add.png" alt="Address Icon" class="detail-icon" />
+        <div class="detail-text">
+          <strong class="detail-label">Address:</strong><br><br>
+          123 Creative Learn Street,<br>
+          Roman City, TX 54321.
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <img src="ph.png" alt="Phone Icon" class="detail-icon" />
+        <div class="detail-text">
+          <strong class="detail-label">Phone:</strong>
+          <img src="ph1.png" alt="Phone Emoji" class="phone-emoji" />
+          <br><br>
+          +1 234 567 890
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Image -->
+    <div class="contact-visual">
+      <img src="con1.png" alt="Contact Visual" />
+    </div>
+  </div>
+</section>
+
+  
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <section class="footer-container">
+      <div class="footer-column">
+        <img src="foot.png" alt="Profile" class="oval-image" />
+      </div>
+
+      <div class="footer-column">
+        <img src="logo.png" alt="Logo" class="logo-image" />
+        <h4>Follow Us On:</h4>
+        <div class="social-icons">
+          <img src="face.jpg" alt="Facebook" />
+          <img src="in.jpg" alt="Instagram" />
+          <img src="whats.jpg" alt="WhatsApp" />
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="blogs.html">Blog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Career</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="my.html">My Account</a></li>
+          <li><a href="track.html">Track Your Order</a></li>
+          <li><a href="#">Return</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Our Information</h4>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">User Terms & Conditions</a></li>
+          <li><a href="#">Return Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Contact Info</h4>
+        <ul>
+          <li>123-456-7890</li>
+          <li>example@gmail.com</li>
+          <li>72, North Street</li>
+          <li>Mumbai-001</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="footer-bottom">
+      <p>© My Market. All rights reserved.</p>
+      <p>
+        <a href="#">Terms & Conditions</a> |
+        <a href="#">Privacy Policy</a>
+      </p>
+    </section>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    function showDot(element) {
+      const dot = element.querySelector('.red-dot');
+      if (dot) dot.style.display = 'block';
+    }
+
+    function toggleProfileMenu(event) {
+      event.preventDefault();
+      const menu = document.getElementById("profileMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    document.addEventListener("click", function (e) {
+      const menu = document.getElementById("profileMenu");
+      const icon = document.querySelector(".icon-wrapper");
+      if (menu && icon && !menu.contains(e.target) && !icon.contains(e.target)) {
+        menu.style.display = "none";
+      }
+    });
+  </script>
+<script>
+  function showDot(el) {
+    const popup = document.getElementById("popupBox");
+    popup.style.display = popup.style.display === "block" ? "none" : "block";
+  }
+</script>
+</body>
+</html>

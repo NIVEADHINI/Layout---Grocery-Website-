@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Header</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background-color: white;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 120px;
+    }
+
+    .search-bar {
+      flex: 1;
+      margin: 10px 20px;
+      display: flex;
+      background-color: #4CAF50;
+      border-radius: 7px;
+      overflow: hidden;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 16px;
+    }
+
+    .search-bar input::placeholder {
+      color: white;
+    }
+
+    .search-bar .search-icon {
+      padding: 0 15px;
+      font-size: 24px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .register-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav {
+      width: 100%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      padding: 15px 0;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #4CAF50;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .search-bar {
+        flex-direction: column;
+      }
+
+      .search-bar input {
+        width: 100%;
+        padding: 12px;
+      }
+
+      .search-bar .search-icon {
+        justify-content: flex-end;
+        padding: 10px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .register-btn {
+        align-self: flex-end;
+        margin-top: 10px;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    footer {
+  background-color: #F29B03;
+  color: black;
+  padding: 40px 20px 20px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column {
+  flex: 1 1 150px;
+  min-width: 150px;
+}
+
+.footer-column h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.footer-column ul li a:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-icons img {
+  width: 50px;
+  height: 50px;
+}
+
+.oval-image {
+  width: 150px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 20px;
+}
+
+.logo-image {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+.footer-bottom a {
+  color: black;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* 📱 Responsive Styles */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-column {
+    margin-bottom: 20px;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+.register-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-box {
+  background: lightgray;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.popup-content.reverse {
+  flex-direction: row-reverse;
+}
+
+.popup-left, .popup-right {
+  flex: 1;
+  position: relative;
+}
+
+.popup-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-container {
+  background: white;
+  padding: 30px;
+  text-align: center;
+  color: black;
+  position: relative;
+}
+
+.form-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #4CAF50;
+  border-radius: 5px;
+  background: white;
+  color: #4CAF50;
+  font-size: 14px;
+}
+
+.login-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.forgot {
+  margin-left: 15px;
+  color: #4CAF50;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.divider {
+  margin: 20px 0;
+  font-size: 14px;
+  color: #4CAF50;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #4CAF50;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.switch-panel {
+  font-size: 14px;
+}
+
+.switch-panel span {
+  color: #4CAF50;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .popup-content, .popup-content.reverse {
+    flex-direction: column;
+  }
+
+  .popup-right img {
+    height: 200px;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+
+  .form-container h2 {
+    font-size: 20px;
+  }
+}
+    .banner {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  background-image: url('hban.png'); /* Replace with your actual image */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.banner-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 40px;
+}
+
+.banner-text {
+  max-width: 600px;
+  color: white;
+}
+
+.banner-text h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.banner-text h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.banner-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.shop-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.enquiry-link {
+  color: yellow;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.enquiry-link::before,
+.enquiry-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 7px;
+  height: 7px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.enquiry-link::before {
+  left: 0;
+}
+
+.enquiry-link::after {
+  right: 0;
+}
+
+.enquiry-link::after,
+.enquiry-link::before {
+  transform: translateY(50%);
+}
+
+.enquiry-link::underline {
+  border-bottom: 3px solid white;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .banner {
+    height: auto;
+    background-position: top;
+  }
+
+  .banner-overlay {
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .banner-text {
+    max-width: 100%;
+  }
+
+  .banner-text h1 {
+    font-size: 28px;
+  }
+
+  .banner-text h3 {
+    font-size: 18px;
+  }
+
+  .banner-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+.circle-rating-wrapper {
+  padding: 30px 40px;
+}
+
+.circle-stack {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.circle {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  position: relative;
+}
+
+.circle-1 { width: 100px; height: 100px; z-index: 5; }
+.circle-2 { width: 90px; height: 90px; margin-left: -20px; z-index: 4; }
+.circle-3 { width: 80px; height: 80px; margin-left: -20px; z-index: 3; }
+.circle-4 { width: 70px; height: 70px; margin-left: -20px; z-index: 2; }
+
+.circle-plus {
+  width: 55px;
+  height: 55px;
+  margin-left: -15px;
+  background-color: #F29B03;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.rating-inline {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rating-score {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+.rating-subtext {
+  font-size: 12px;
+  color: grey;
+  margin-top: 2px;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .circle-stack {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .rating-inline {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+.why-choose-us {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff;
+}
+
+.why-choose-us h2 {
+  color: #F29B03;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #f0f0f0;
+  padding: 20px;
+  width: 220px;
+  height: 250px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 200px;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 19px;
+  color: black;
+  font-weight: bold;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .card-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .why-choose-us h2 {
+    font-size: 24px;
+  }
+}
+.categories-section {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff;
+}
+
+.categories-section h2 {
+  color: #F29B03;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.category-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.category-card {
+  text-align: center;
+  width: 220px;
+}
+
+.category-card img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.category-card h3 {
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .category-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .category-card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .categories-section h2 {
+    font-size: 24px;
+  }
+}
+.deals-section {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff;
+}
+
+.deals-section h2 {
+  color: #F29B03;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.deal-row {
+  display: flex;
+  justify-content: center;
+  gap: 400px;
+  flex-wrap: wrap;
+}
+
+.deal-card {
+  border-radius: 20px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+.deal-card img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.deal-card h3 {
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.shop-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .deal-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .deal-card {
+    width: 90%;
+    margin-bottom: 30px;
+  }
+
+  .deals-section h2 {
+    font-size: 24px;
+  }
+}
+.faq-section {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff;
+  color: black;
+}
+
+.faq-section h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.faq-item {
+  max-width: 800px;
+  margin: 0 auto 20px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+.faq-answer {
+  display: none;
+  font-size: 18px;
+  margin-top: 10px;
+  color: #333;
+}
+
+.arrow {
+  font-size: 18px;
+  transition: transform 0.3s;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .faq-section h2 {
+    font-size: 22px;
+  }
+
+  .faq-question {
+    font-size: 16px;
+  }
+
+  .faq-answer {
+    font-size: 14px;
+  }
+}
+ 
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Logo" />
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search Product category" />
+      <div class="search-icon">🔍</div>
+    </div>
+
+    <a href="#" class="register-btn" onclick="openLoginPopup()">Register</a>
+  </header>
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="shop.html">Shopping</a>
+    <a href="cat.html">Categories</a>
+    <a href="blogs.html">Blogs</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="about.html">About Us</a>
+  </nav>
+
+  <!-- Trigger Button -->
+
+
+<!-- Login Popup -->
+<div class="popup-overlay" id="loginPopup">
+  <div class="popup-box">
+    <div class="popup-content">
+      <div class="popup-left">
+        <div class="form-container">
+          <h2>Register Free!</h2>
+          <input type="email" placeholder="Enter your e-mail" />
+          <input type="password" placeholder="Password" />
+          <div class="login-actions">
+            <button class="login-btn">Login</button>
+            <a href="#" class="forgot">Forget your password?</a>
+          </div>
+          <div class="divider">-------------- 4CAF50 Sign Up Using --------------</div>
+          <div class="social-icons">
+            <img src="goo.jpg" alt="Google" />
+            <img src="face.jpg" alt="Facebook" />
+            <img src="in.jpg" alt="Instagram" />
+            <img src="tw.jpg" alt="Twitter" />
+          </div>
+          <p class="switch-panel">
+            Don't have an account? <span onclick="switchToSignup()">Create New Account</span>
+          </p>
+        </div>
+      </div>
+      <div class="popup-right">
+        <img src="foot.png" alt="Side Image" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signup Popup -->
+<div class="popup-overlay" id="signupPopup">
+  <div class="popup-box">
+    <div class="popup-content reverse">
+      <div class="popup-right">
+        <img src="sign.png" alt="Side Image" />
+      </div>
+      <div class="popup-left">
+        <div class="form-container">
+          <button class="close-btn" onclick="closeSignupPopup()">✖</button>
+          <h2>Sign Up!</h2>
+          <input type="text" placeholder="Full Name" />
+          <input type="email" placeholder="Email" />
+          <input type="password" placeholder="Password" />
+          <button class="login-btn">Sign Up</button>
+          <p class="switch-panel">
+            Already have account? <span onclick="switchToLogin()">Login</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="banner">
+  <div class="banner-overlay">
+    <div class="banner-text">
+      <h1>Explore Fresh & Healthy</h1>
+      <h3>Convenience and trust your way</h3>
+      <p>
+        Your trusted online grocery store for quick, easy, and reliable shopping—<br />
+        Freshness delivered within hours.
+      </p>
+      <div class="banner-actions">
+        <a href="shop.html" class="shop-btn">Shop Now →</a>
+        <a href="furniture.html" class="enquiry-link">Enquiry Furniture</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="circle-rating-wrapper">
+  <div class="circle-stack">
+    <img src="c1.jpg" alt="User 1" class="circle circle-1" />
+    <img src="c2.jpg" alt="User 2" class="circle circle-2" />
+    <img src="c3.jpg" alt="User 3" class="circle circle-3" />
+    <img src="c4.jpg" alt="User 4" class="circle circle-4" />
+    <div class="circle circle-plus">+</div>
+
+    <div class="rating-inline">
+      <div class="rating-score">4.9k Rating+</div>
+      <div class="rating-subtext">Trusted by 50k customer</div>
+    </div>
+  </div>
+</section>
+  
+<section class="why-choose-us">
+  <h2>Why Choose Us!</h2>
+  <div class="card-row">
+    <div class="card">
+      <img src="w1.png" alt="Fresh & Handpicked" />
+      <h3>Fresh & Handpicked</h3>
+    </div>
+    <div class="card">
+      <img src="w2.png" alt="Fast & Reliable Delivery" />
+      <h3>Fast & Reliable Delivery</h3>
+    </div>
+    <div class="card">
+      <img src="w3.png" alt="Affordable Prices" />
+      <h3>Affordable Prices</h3>
+    </div>
+    <div class="card">
+      <img src="w4.png" alt="Wide Variety" />
+      <h3>Wide Variety</h3>
+    </div>
+    <div class="card">
+      <img src="w5.png" alt="Quality & Trust" />
+      <h3>Quality & Trust</h3>
+    </div>
+  </div>
+</section>
+
+<section class="categories-section">
+  <h2>Categories</h2>
+  <div class="category-row">
+    <div class="category-card">
+      <img src="hc1.png" alt="Vegetable" />
+      <h3>Vegetable</h3>
+    </div>
+    <div class="category-card">
+      <img src="hc2.png" alt="Fresh Fruit" />
+      <h3>Fresh Fruit</h3>
+    </div>
+    <div class="category-card">
+      <img src="hc3.png" alt="Milk & Egg" />
+      <h3>Milk & Egg</h3>
+    </div>
+    <div class="category-card">
+      <img src="hc4.png" alt="Dry Fruits" />
+      <h3>Dry Fruits</h3>
+    </div>
+    <div class="category-card">
+      <img src="hc5.png" alt="House Hold" />
+      <h3>House Hold</h3>
+    </div>
+  </div>
+</section>
+
+<section class="deals-section">
+  <h2>Deals Flat 25% off</h2>
+  <div class="deal-row">
+    <div class="deal-card">
+      <img src="hd1.png" alt="Fresh Vegetable" />
+      <h3>Fresh Vegetable have 25% OFF</h3>
+      <a href="shop.html" class="shop-btn">Shop Now →</a>
+    </div>
+    <div class="deal-card">
+      <img src="hd2.png" alt="Fresh Fruits" />
+      <h3>Fresh Fruits have 25% OFF</h3>
+      <a href="shop.html" class="shop-btn">Shop Now →</a>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <strong>1.) Do You offer free delivery?</strong>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="faq-answer">
+      Yes, we offer free standard delivery on all orders above Rs. 5,000. Express and scheduled delivery options are also available at checkout.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <strong>2.) How long will it take to receive my order?</strong>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="faq-answer">
+      Delivery times vary based on your location and the product's availability. Most orders are delivered within 5–10 business days. Custom-made items may take longer.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <strong>3.) Can I return or exchange grocery after purchase?</strong>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="faq-answer">
+      Yes, you can return eligible items within 7 days of delivery. Items must be unused and in original condition. Please check our return policy for details.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <strong>4.) How Can I contact customer support?</strong>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="faq-answer">
+      You can reach us via live chat, email at support@funishop.com, or call our helpline at 1800-123-4567 (Mon–Sat, 10 AM – 6 PM).
+    </div>
+  </div>
+</section>
+
+
+</body>
+<script>
+  function openLoginPopup() {
+    document.getElementById("loginPopup").style.display = "flex";
+  }
+
+  function switchToSignup() {
+    document.getElementById("loginPopup").style.display = "none";
+    document.getElementById("signupPopup").style.display = "flex";
+  }
+
+  function switchToLogin() {
+    document.getElementById("signupPopup").style.display = "none";
+    document.getElementById("loginPopup").style.display = "flex";
+  }
+
+  function closeSignupPopup() {
+    document.getElementById("signupPopup").style.display = "none";
+  }
+</script>
+
+<script>
+  function toggleFaq(element) {
+    const answer = element.nextElementSibling;
+    const arrow = element.querySelector('.arrow');
+    const isVisible = answer.style.display === 'block';
+
+    answer.style.display = isVisible ? 'none' : 'block';
+    arrow.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+  }
+</script>
+
+<footer>
+  <section class="footer-container">
+
+    <!-- First Column -->
+    <div class="footer-column">
+      <img src="foot.png" alt="Profile" class="oval-image" />
+    </div>
+
+    <!-- Second Column -->
+    <div class="footer-column">
+      <img src="logo.png" alt="Logo" class="logo-image" />
+      <h4>Follow Us On:</h4>
+      <div class="social-icons">
+        <img src="face.jpg" alt="Facebook" />
+        <img src="in.jpg" alt="Instagram" />
+        <img src="whats.jpg" alt="WhatsApp" />
+      </div>
+    </div>
+
+    <!-- Third Column -->
+    <div class="footer-column">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="#">Career</a></li>
+      </ul>
+    </div>
+
+    <!-- Fourth Column -->
+    <div class="footer-column">
+      <h4>Customer Service</h4>
+      <ul>
+        <li><a href="my.html">My Account</a></li>
+        <li><a href="track.html">Track Your Order</a></li>
+        <li><a href="#">Return</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+
+    <!-- Fifth Column -->
+    <div class="footer-column">
+      <h4>Our Information</h4>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">User Terms & Conditions</a></li>
+        <li><a href="#">Return Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Sixth Column -->
+    <div class="footer-column">
+      <h4>Contact Info</h4>
+      <ul>
+        <li>123-456-7890</li>
+        <li>example@gmail.com</li>
+        <li>72, North Street</li>
+        <li>Mumbai-001</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="footer-bottom">
+    <p>© My Market. All rights reserved.</p>
+    <p>
+      <a href="#">Terms & Conditions</a> |
+      <a href="#">Privacy Policy</a>
+    </p>
+  </section>
+</footer>
+
+</html>
